@@ -1,0 +1,17 @@
+{% extends "post_login.html" %}
+
+
+{% block title %}
+  RUSTIC PAGES | Home
+{% endblock %}
+
+
+{% block content %}
+<div class="row p-5">
+</div>
+<div class="row m-5 align-items-center">
+  <div class="col align-self-center">
+    <h4 class="text-center">Welcome <span class="font-weight-bold">{{ session['user'].first_name }} {{ session['user'].last_name }}</span>! Please use the search-bar at the top to search for any book.</h4>
+  </div>
+</div>
+{% endblock %}

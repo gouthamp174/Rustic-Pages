@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  RUSTIC PAGES | POST LOGIN
+{% endblock %}
+
+
+{% block custom_header %}
+<div class="col-12 col-md-6">
+  <form class="" action="{{ url_for('search') }}" method="post">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <select class="form-control" id="search-criteria" name="criteria">
+          <option value="title" selected>Book Title</option>
+          <option value="isbn">ISBN</option>
+          <option value="author">Book Author</option>
+        </select>
+      </div>
+      <input type="text" class="form-control" id="search-q" name="q" placeholder="Search Here" required>
+      <div class="input-group-append">
+        <button class="btn btn-light" type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="col-12 col-md-auto">
+  <div class="row justify-content-end">
+    <div class="col-12 col-md-auto">
+      <div class="btn-group">
+        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ session['user'].first_name }} {{ session['user'].last_name }}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <form class="" action="{{ url_for('delete_account') }}" method="post">
+            <div class="input-group">
+              <button class="dropdown-item" type="submit">Delete Account</button>
+            </div>
+          </form>
+          <div class="dropdown-divider"></div>
+          <form class="" action="{{ url_for('logout') }}" method="post">
+            <div class="input-group">
+              <button class="dropdown-item" type="submit">Log Out</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+{% endblock %}

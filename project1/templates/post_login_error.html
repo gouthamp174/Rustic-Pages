@@ -1,0 +1,20 @@
+{% extends "post_login.html" %}
+
+
+{% block title %}
+RUSTIC PAGES | Error
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+  <h1>ERROR!</h1>
+</div>
+<div class="row">
+  {% if error_msg %}
+    <p>{{ error_msg }}</p>
+  {% else %}
+    <p>An Unknown error occured.</p>
+  {% endif %}
+</div>
+{% endblock %}

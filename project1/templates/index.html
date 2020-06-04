@@ -1,0 +1,42 @@
+{% extends "pre_login.html" %}
+
+
+{% block title %}
+RUSTIC PAGES | Welcome
+{% endblock %}
+
+
+{% block content %}
+<div class="row justify-content-around">
+  <div class="col-auto align-self-center p-2">
+    <div class="row align-items-center">
+      <div class="h1">Welcome to rustic pages!</div>
+    </div>
+  </div>
+  <div class="col-auto col-lg-4 p-2">
+    <form class="" action="{{ url_for('signup') }}" method="post">
+      <div class="form-row">
+        <div class="col">
+          <h1>Create a New Account</h1>
+          <p>It's quick and easy.</p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <input type="text" class="form-control" id="first-name" name="First name" placeholder="First name" maxlength="50" required>
+        </div>
+        <div class="form-group col">
+          <input type="text" class="form-control" id="last-name" name="Last name" placeholder="Last name" maxlength="50" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="username" name="Username" placeholder="Username or Email ID" maxlength="50" required>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="password" name="Password" placeholder="Password" maxlength="50" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

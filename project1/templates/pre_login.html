@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  RUSTIC PAGES | PRE LOGIN
+{% endblock %}
+
+
+{% block custom_header %}
+<div class="col-12 col-md-auto">
+  <form class="" action="{{ url_for('login') }}" method="post">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" name="Username" placeholder="Username" maxlength="50" required>
+      </div>
+      <div class="col">
+        <input type="password" class="form-control" name="Password" placeholder="Password" maxlength="50" required>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-light">Log In</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+
+{% block content %}
+{% endblock %}

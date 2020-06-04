@@ -1,0 +1,20 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+  overflow: auto;
+}
+
+#header-bar {
+  background-color: #D24726;
+}
+
+.table-row-borderless th, .table-row-borderless td {
+  border: none !important;
+}
+
+/*# sourceMappingURL=master.css.map */

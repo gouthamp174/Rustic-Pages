@@ -1,0 +1,169 @@
+{% extends "post_login.html" %}
+
+
+{% block title %}
+RUSTIC PAGES | {{ book.title}}
+{% endblock %}
+
+
+{% block content %}
+<div class="row my-4 border-bottom">
+  <div class="col">
+    <div class="h1">
+      {{ book.title }}
+    </div>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col">
+    <div class="row my-1 border-bottom">
+      <div class="col">
+        <div class="h5">
+          BOOK DETAILS
+        </div>
+      </div>
+    </div>
+    <div class="row my-1">
+      <div class="col-auto col-md-6 table-responsive-md">
+        <table class="table table-row-borderless">
+          <tbody>
+            <tr>
+              <th scope="row">ISBN:</th>
+              <td>{{ book.isbn }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Author:</th>
+              <td>{{ book.author }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Published Year:</th>
+              <td>{{ book.published }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Average Score (Goodreads.com):</th>
+              <td>{{ average_score }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Review Count (Goodreads.com):</th>
+              <td>{{ review_count }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col">
+    <div class="row my-1 border-bottom">
+      <div class="col">
+        <div class="h5">
+          MY REVIEW
+        </div>
+      </div>
+    </div>
+    <div class="row my-1">
+      <div class="col">
+        <div class="card bg-light">
+          <div class="card-body">
+            {% if my_review %}
+              <h6 class="card-subtitle mb-2 text-muted">
+                <span class="font-weight-bold">You</span> rated it <span class="font-weight-bold">{{ my_review.rating }}</span>
+              </h6>
+              <h5 class="card-title">{{ my_review.title }}</h5>
+              <p class="card-text">{{ my_review.review }}</p>
+              <form class="" action="{{ url_for('delete_review', id=my_review.id) }}" method="post">
+                <button class="btn btn-primary" type="submit">Delete Review</button>
+              </form>
+            {% else %}
+              <form class="" action="{{ url_for('add_review') }}" method="post">
+                <input type="hidden" name="ISBN" value="{{ book.isbn }}">
+                <div class="form-group row">
+                  <legend class="col-form-label col-auto">Rating:</legend>
+                  <div class="col align-self-center">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="Rating" id="ratingRadio1" value="1">
+                      <label class="form-check-label" for="scoreRadio1" title="didn't like it">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="Rating" id="ratingRadio2" value="2">
+                      <label class="form-check-label" for="scoreRadio1" title="it was OK">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="Rating" id="ratingRadio3" value="3">
+                      <label class="form-check-label" for="scoreRadio1" title="liked it">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="Rating" id="ratingRadio4" value="4">
+                      <label class="form-check-label" for="scoreRadio1" title="really liked it">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="Rating" id="ratingRadio5" value="5">
+                      <label class="form-check-label" for="scoreRadio1" title="it was amazing">5</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <label for="reviewHeading1">Title:</label>
+                    <input type="text" class="form-control" id="reviewHeading1" name="Title" maxlength="100" required>
+                    <small id="reviewTitleHelpBlock" class="form-text text-muted">Your title must be 0-100 characters long.</small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <label for="reviewHeading1">Review:</label>
+                    <input type="text" class="form-control" id="reviewHeading1" name="Review" maxlength="300" required>
+                    <small id="reviewTextHelpBlock" class="form-text text-muted">Your review must be 0-300 characters long.</small>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <button class="btn btn-primary" type="submit">Add Review</button>
+                  </div>
+                </div>
+              </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col">
+    <div class="row my-1 border-bottom">
+      <div class="col">
+        <div class="h5">
+          COMMUNITY REVIEWS
+        </div>
+      </div>
+    </div>
+    {% for community_review in community_reviews %}
+      <div class="row my-1">
+        <div class="col">
+          <div class="card bg-light">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-muted">
+                <span class="font-weight-bold">{{ community_review.user_name }}</span> rated it <span class="font-weight-bold">{{ community_review.rating }}</span>
+              </h6>
+              <h5 class="card-title">{{ community_review.title }}</h5>
+              <p class="card-text">{{ community_review.review }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="row my-1">
+        <div class="col">
+          <div class="card bg-light">
+            <div class="card-body">
+              <p class="card-text">No community reviews were found for this book.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

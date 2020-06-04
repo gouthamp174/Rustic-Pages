@@ -1,0 +1,36 @@
+{% extends "post_login.html" %}
+
+
+{% block title %}
+RUSTIC PAGES | Search
+{% endblock %}
+
+
+{% block content %}
+<div class="row my-4 border-bottom">
+  <div class="col">
+    <div class="h1">
+      Search Results ("{{ q }}")
+    </div>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col">
+    {% for book in books %}
+      <div class="row my-1">
+        <div class="col">
+          <div class="card bg-light">
+            <div class="card-body">
+              <a href="{{ url_for('book', isbn=book.isbn) }}" class="card-link"><h5 class="card-title">{{ book.title }}</h5></a>
+              <h6 class="card-subtitle">by <a href="{{ url_for('search', criteria='author', q=book.author) }}">{{ book.author }}</a></h6>
+              <p class="card-text text-muted">published {{ book.published }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <h5>No books were found matching search criteria.</h5>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
