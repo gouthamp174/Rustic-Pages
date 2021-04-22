@@ -5,6 +5,10 @@
 Welcome to my website called 'RUSTIC PAGES'. It is a book review website that allows users to search for a book and share their reviews about it. They can also view reviews shared by other users. Let's create a wonderful community of avid book readers who love to read and share their insights with each other. Even if you're not an enthusiastic reader, you can always check out what others have to say about a book that has caught your attention while lying on a table or on a book shelf.
 
 
+## VIDEO LINK
+https://www.youtube.com/watch?v=PBNs7_mGhL8
+
+
 ## WEBSITE LAYOUT
 Initially users are taken to a welcome page where they can either sign-up (new user) or login (existing user) using their credentials. During sign-up they've to fill in additional details that are mandatory. If either sign-up or login is unsuccessful, an error page is displayed detailing what went wrong and, if possible, includes a suggestion to help them.
 
@@ -16,7 +20,3 @@ Each book has a page that includes multiple sections.
 3. Third section: It includes any reviews added by other users within the community. All reviews are listed in reverse chronological order from latest to earliest review.
 
 Finally users can also access book information, pro-grammatically, using following REST API- **`/api/<isbn>`** where users can replace <isbn> with ISBN number of any book. This will return a JSON data including book details. If corresponding book information was not available or if ISBN number was not valid then a HTTP 404 error is returned.
-
-
-## VIDEO LINK
-https://www.youtube.com/watch?v=PBNs7_mGhL8
